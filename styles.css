@@ -1,0 +1,113 @@
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 23px;
+  font-weight: 14;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.menu {
+  /* width: 300px; */
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 20px;
+  margin: 0;
+  /* display: flex;
+  justify-content: center;
+  flex-direction: column; */
+}
+
+.menu__wrapper {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+
+.menu__wrapper:first-of-type {
+  margin-bottom: 30px;
+}
+.menu__title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+  font-weight: 19;
+}
+
+.menu__label {
+  display: inline-block;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 14px;
+  font-weight: 14;
+  margin: 0 0 10px 30px;
+}
+
+.menu__input-group {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.menu__input {
+  border: 1px solid #bdbdbd;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 5px 8px;
+}
+
+.menu__input_disabled {
+  display: none;
+}
+
+.menu__input:focus {
+  outline: 1px solid #bdbdbd;
+}
+
+.menu__button {
+  display: inline-block;
+  width: 300px;
+  align-self: center;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background-color: #eee;
+  border: 1px solid #bdbdbd;
+  padding: 5px 8px;
+  font-size: 15px;
+  border-radius: 7px;
+  transition: background-color .15s ease-in-out;
+}
+
+.menu__button:hover {
+  background-color: #84B3E9;
+}
+
+/* .menu__input-group .menu__input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  position: relative;
+  z-index: 2;
+} */
+/* 
+.menu__input-group .menu__button{
+  position: relative;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left-width: 0;
+} */
