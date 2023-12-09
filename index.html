@@ -12,14 +12,17 @@
   <fieldset class="container">
     <h1 class="title">График добычи за сутки</h1>
     <div class="chart" id="chart"></div>
-    <form class="menu" novalidate>
+    <form class="menu">
       <legend class="menu__title">Модификация графика</legend>
       <fieldset class="menu__wrapper">
         <label class="menu__label" for="point">Добавить точку</label>
         <div class="menu__input-group">
-          <input placeholder="Дата" class="menu__input" type="date" name="date" id="date">
-          <input placeholder="Время" class="menu__input" type="time" name="time" id="time">
-          <input placeholder="Колличество" class="menu__input " type="text" name="value" id="value">
+          <input placeholder="Дата" class="menu__input" type="date" name="date" id="date" required>
+          <!-- <input placeholder="Время" class="menu__input" type="number" min="0" max="23" name="time" id="time" required> -->
+          <select class="menu__input" name="time" id="time">
+            <!-- <option value="00:00">00:00</option> -->
+          </select>
+          <input placeholder="Колличество" class="menu__input " type="text" name="value" id="value" required>
         </div>
         <button class="menu__button" type="submit">Добавить</button>
       </fieldset>
