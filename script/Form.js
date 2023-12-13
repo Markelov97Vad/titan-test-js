@@ -21,23 +21,13 @@ export default class Form {
       evt.preventDefault();
       console.log(this._getInputValue());
       this._handleFormAddPoint(this._getInputValue())
-      if(this._getInputValue().date.length > 0){
-        const inputData = this._inputList[0];
+      if(this._getInputValue().date.length > 0 && this._getInputValue().plan.length > 0){
+        // const inputData = this._inputList[0];
+        const inputData = this._form.querySelector('#date');
+        const inputPlan = this._form.querySelector('#plan');
         inputData.classList.add('menu__input_disabled')
+        inputPlan.classList.add('menu__input_disabled')
       }
     })
   }
 }
-
-// const trace1 = {
-    //   type: "scatter",
-    //   mode: "lines+markers",
-    //   name: 'Добыто (сутки)',
-    //   x: renderPoint(arrDataDay, 'Date'),
-    //   y: renderPoint(arrDataDay, 'point'),
-    //   line: {
-      //     color: '#800080',
-      //     dash: 'solid',
-      //     width: 4
-      //   }
-      // }

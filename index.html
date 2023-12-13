@@ -2,8 +2,7 @@
 <html lang="en">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-  <script src="https://cdn.plot.ly/plotly-2.27.1.min.js"></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js'></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <title>График добычи за сутки</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
@@ -11,21 +10,22 @@
 <body>
   <fieldset class="container">
     <h1 class="title">График добычи за сутки</h1>
-    <div class="chart" id="chart"></div>
+    <div class="myDiv" id="myDiv"></div>
     <form class="menu">
       <legend class="menu__title">Модификация графика</legend>
       <fieldset class="menu__wrapper">
         <label class="menu__label" for="point">Добавить точку</label>
         <div class="menu__input-group">
           <input placeholder="Дата" class="menu__input" type="date" name="date" id="date" required>
-          <!-- <input placeholder="Время" class="menu__input" type="number" min="0" max="23" name="time" id="time" required> -->
-          <select class="menu__input" name="time" id="time">
-            <!-- <option value="00:00">00:00</option> -->
-          </select>
+          <input placeholder="План добычи" class="menu__input" type="number" name="plan" id="plan" required>
+          <input class="menu__input" type="time" name="time" id="time">
+          <!-- <select class="menu__input" name="time" id="time">
+          </select> -->
           <input placeholder="Колличество" class="menu__input " type="text" name="value" id="value" required>
         </div>
         <button class="menu__button" type="submit">Добавить</button>
       </fieldset>
+      
       <!-- <fieldset class="menu__wrapper">
             <label class="menu__label" for="plan">Установить план добычи</label>
             <div class="menu__input-group">
@@ -33,11 +33,15 @@
               <button class="menu__button" type="button">Рассчитать</button>
             </div>
           </fieldset> -->
-      </а>
+      <div class="test" id="test"></div>
 
     </form>
-    <script type="module" src="./index.js"></script>
+    <script defer type="module" src="./index.js"></script>
+    <script type="module" src="./script/layout.js"></script>
+    <script type="module" src="./script/constants.js"></script>
     <script type="module" src="./script/Form.js"></script>
+    <script type="module" src="./script/traces.js"></script>
+    <script type="module" src="./test.js"></script>
 </body>
 
 </html>
