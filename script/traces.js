@@ -4,8 +4,8 @@ import { layout } from "./layout.js";
 // console.log(myDivContainer);
 
 export function renderDayTrace(newArrDataDay) {
-  console.log(newArrDataDay);
-  console.log('OOOO',renderPoint(newArrDataDay, 'date'));
+  // console.log(newArrDataDay);
+  // console.log('OOOO',renderPoint(newArrDataDay, 'date'));
   return {
     name: 'Добыто (сутки)',
     hoverinfo: 'none',
@@ -29,11 +29,11 @@ export function renderDayTrace(newArrDataDay) {
 
 //Декомпозировать
 export function renderHourTrace() {
-  // console.log('Data Hour',renderPoint(setValuePerHour(arrDataHour), 'date'));
+  // console.log('Data Hour',new Date(renderPoint(setValuePerHour(arrDataHour), 'date'))?.getTime());
   // console.log('Data Hour',renderPoint(setValuePerHour(arrDataHour), 'value'));
   return {
     name: 'Добыто (час)',
-    hoverinfo: 'none',
+    // hoverinfo: 'none',
     type: "bar",
     mode: "lines",
     // x: renderPoint(arrDataHour, 'time'),
@@ -50,10 +50,10 @@ export function renderHourTrace() {
   }
 }
 
-export function renderProductionTrace(dataProd) {
-  console.log('dataProd',dataProd);
-  console.log('dsdsd',typeof dataProd[1]?.date.split(' ')[0] + '');
-  console.log('Date',dataProd[1]?.date);
+export function renderForecastTrace(dataProd) {
+  // console.log('dataProd',dataProd);
+  // console.log('dsdsd',typeof dataProd[1]?.date.split(' ')[0] + '');
+  // console.log('Date',dataProd[1]?.date);
 
   // const result = {
   //   xref: 'paper',
@@ -149,7 +149,7 @@ export function renderProductionPlan(date = '2018-06-15', time, plan = 40) {
 
   // // const { plan, data, time } = dataPlan
   // // console.log('plan',plan);
-  console.log('All data', date, time, plan); 
+  // console.log('All data', date, time, plan); 
   //{plan: '222', date: '2023-12-11', time: '01:00'}
   // var x = ['2018-06-15 00:00', '2018-06-15 23:59'];
   // const x = [];
@@ -250,16 +250,16 @@ function renderPoint(data, key) {
   // }
 
   return data.map(el => {
-    console.log('render point',el, key);
+    // console.log('render point',el, key);
     return el[key] // ["2018-06-15 05:00"] || ["0"]
   })
 }
 
 function setValuePerHour (arrValueDay) {
   // [{date: '2015-06-15 06:13', value: 113} , {date: '2015-06-15 06:16', value: 100}, {date: '2015-06-15 16:56', value: 180}]
-  console.log('Исходный массив',arrValueDay);
+  // console.log('Исходный массив',arrValueDay);
   let arrHour = arrValueDay.map(data => data.date.split(' ')[1].split(':')[0]) // '06'
-  console.log('ArrHOUR',arrHour);
+  // console.log('ArrHOUR',arrHour);
   let newArr = [];
   let count = 0
   arrValueDay.forEach((dateVal, i , arr) => {
@@ -268,12 +268,12 @@ function setValuePerHour (arrValueDay) {
     const currentDate = date.split(' ')[0]; // '2015-06-15'
     const hour = time.split(':')[0]; // '06'
     // count = +value
-    console.log('Count',count);
+    // console.log('Count',count);
     if(hour === arrHour[i + 1]) {
       count += +value
       return
     }
-    console.log('IIII', count);
+    // console.log('IIII', count);
     count += +value
     // newArr.push({date: `${currentDate} ${Number(hour) + 1}:00`, value: count})
     newArr.push({date: `${currentDate} ${hour}:00`, value: count})

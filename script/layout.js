@@ -1,5 +1,5 @@
-export function renderLayout( date = '2018-06-15') {
-  console.log('data',date);
+export function renderLayout( date = '2018-06-15') { // > 1000 = 1 м. m
+  // console.log('data',date);
   // const {plan, time, date} = dataPlan;
   const layout = {
     // title: 'Скважина 1 - 1',
@@ -48,8 +48,10 @@ export function renderLayout( date = '2018-06-15') {
       // autorange:true,
       // tickformat: '%d, %b',
       // tickangle: 90,
-      // type: 'date',
-      // range: ['2018-06-15 00:00', '2018-06-15 23:59'],
+      type: 'date',
+      minallowed: 16643,
+      maxallowed: 16989,
+      // range: [3600000, 86400000],
       // range: [new Date(1529038860000).toISOString(), new Date(1529193540000).toISOString()],
       // categoryorder : "array",
       // rangebreaks: [

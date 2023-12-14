@@ -1,7 +1,8 @@
 import Form from "./script/Form.js";
 import { arrDataAllValue, arrDataDay, arrDataHour, arrProductionForecast} from "./script/constants.js";
+import { getForecastValue } from "./script/functions.js";
 import { layout, renderLayout } from "./script/layout.js";
-import { renderDayTrace, renderHourTrace, renderProductionPlan, renderProductionTrace } from "./script/traces.js";
+import { renderDayTrace, renderHourTrace, renderProductionPlan, renderForecastTrace } from "./script/traces.js";
 const myDivContainer = document.querySelector('.myDiv');
 
 let allValue = 0;
@@ -113,7 +114,6 @@ let trace3 = {
   // var data = [trace1, trace2];
 
   // renderDayTrace(dataDay);
-  renderHourTrace()
   const dataTrace = [
     renderDayTrace(dataDay),
     renderHourTrace(),
@@ -136,37 +136,66 @@ let trace3 = {
   myDivContainer.on('plotly_click', function(data) {
 
     //!!
-    console.log('Ckick',data);
+    // console.log('Ckick',data);
     const point = data.points[0]
-    console.log('Point X',point.xaxis.d2l(point.x));
-    console.log('Point Y',point.yaxis.d2l(point.y));
+    // console.log('Point X',point.xaxis.d2l(point.x));
+    // console.log('Point Y',point.yaxis.d2l(point.y));
     const time = point.x.split(" ")[1];
     const date = point.x.split(" ")[0];
 
+  const userLocale = 'ru-RU';
+  
+  // Create a date formatter
+  const dateFormatter = new Intl.DateTimeFormat(userLocale, {
+    //  year: 'numeric',
+    weekday: 'long',
+     day: 'numeric',
+     month: 'long', // Use 'long' for full month names, or 'short' for abbreviated names
+     hour: 'numeric', // Use 'long' for full month names, or 'short' for abbreviated names
+     minute: 'numeric', // Use 'long' for full month names, or 'short' for abbreviated names
+     formatMatcher: "basic"
+  });
+  
+  // Format the date
+  const formattedDate = dateFormatter.format(new Date(point.x));
+  let resultFormatted = formattedDate.split(' ').filter(el => el !== 'в').map(el => {
+    const firstLetter = el.charAt(0).toLocaleUpperCase();
+    return `${firstLetter}${el.slice(1)}`
+  }).join(' ');
+  // const formattedDate2 = dateFormatter.format(new Date(point.x));
+  // console.log('Formated d',split);
 
-    console.log(point.fullData);
+
+    // console.log(point.fullData);
     const newAnnotation = {
       // xref: 'paper',
       // x: point.xaxis.d2l(point.x),
       x: point.x,
       // x: -1,
-      y: point.yaxis.d2l(point.y),
+      // y: point.yaxis.d2l(point.y),
+      y: point.y,
+      // xref: 'x',
+      // yref: 'y',
       // y: +point.y,
       // xanchor: 'right',
       // yanchor: 'middle',
       // text: dataProd[1]?.value + '',
-      text: `<i>Пятница, Июнь 15, ${point.x.split(" ")[1]}</i><br>` + 
-      '<i>Добыто (сутки): </i> '+(point.y),
+      // text: `<i>Пятница, Июнь 15, ${point.x.split(" ")[1]}</i><br>` + 
+      text: `<i>${resultFormatted}</i><br>` + 
+      `<i>${point.data.name}: </i> `+(point.y),
       // arrowcolor: '#DEB887',
       arrowcolor: point.fullData?.marker?.color === undefined ?' rgba(226, 39, 245, 1)' : point.fullData.marker.color,
       bordercolor: point.fullData?.marker?.color === undefined ?' rgba(226, 39, 245, 1)' : point.fullData.marker.color,
       bgcolor: 'rgba(255, 255, 255, 0.9)',
       borderwidth: 3,
-      borderpad: 10,
+      borderpad: 7,
+      // captureevents: true,
+      // arrowsize: 0.1,
+      ax: 10,
       // showarrow: false,
-      arrowhead: 2,
+      arrowhead: 6,
       ax:  0,
-      ay: -60,
+      ay: -50,
       font: {
         family: 'Arial',
         size: 12,
@@ -175,8 +204,8 @@ let trace3 = {
     };
     const divid = document.getElementById('myDiv');
     const newIndex = (divid.layout.annotations || []).length;
-    console.log('annotation',divid.layout.annotations);
-    console.log('point.pointNumber',point.pointNumber);
+    // console.log('annotation',divid.layout.annotations);
+    // console.log('point.pointNumber',point.pointNumber);
     if(newIndex) {
       var foundCopy = false;
       divid.layout.annotations.forEach(function(ann, sameIndex) {
@@ -236,7 +265,12 @@ function handleFormAddPoint(data) {
   // console.log('arrForPlan',arrForPlan );
   
   const newArrProductionForecast = arrForPlan.concat(arrProductionForecast)
+  console.log('ArrPlan', arrForPlan);
   console.log('newArrProductionForecast',newArrProductionForecast );
+  if (newArrDataDay.length >= 2) {
+    
+    getForecastValue(newArrDataDay)
+  }
   renderChart(newArrDataDay, newArrProductionForecast, date, time, Number(plan))
   // const {date = currentDate, time, value, plan} = data;
   // console.log(date,time, value, plan);
