@@ -17,31 +17,30 @@
         <label class="menu__label" for="point">Добавить точку</label>
         <div class="menu__input-group">
           <input placeholder="Дата" class="menu__input" type="date" name="date" id="date" required>
-          <input placeholder="План добычи" class="menu__input" type="number" name="plan" id="plan" required>
           <input class="menu__input" type="time" name="time" id="time">
           <!-- <select class="menu__input" name="time" id="time">
           </select> -->
-          <input placeholder="Колличество" class="menu__input " type="text" name="value" id="value" required>
+          <input placeholder="Колличество" class="menu__input " type="number" name="value" id="value" required>
         </div>
         <button class="menu__button" type="submit">Добавить</button>
       </fieldset>
       
-      <!-- <fieldset class="menu__wrapper">
-            <label class="menu__label" for="plan">Установить план добычи</label>
-            <div class="menu__input-group">
-              <input class="menu__input" type="text" name="" id="plan">
-              <button class="menu__button" type="button">Рассчитать</button>
-            </div>
-          </fieldset> -->
+      <fieldset class="menu__wrapper">
+        <label class="menu__label" for="plan">Установить план добычи</label>
+        <div class="menu__input-group">
+          <input placeholder="План добычи" class="menu__input" type="number" name="plan" id="plan">
+          <button class="menu__button" type="button" id="button-plan">Рассчитать</button>
+        </div>
+      </fieldset>
       <div class="test" id="test"></div>
 
     </form>
     <script defer type="module" src="./index.js"></script>
+    <script type="module" src="./script/utils.js"></script>
     <script type="module" src="./script/layout.js"></script>
     <script type="module" src="./script/constants.js"></script>
     <script type="module" src="./script/Form.js"></script>
     <script type="module" src="./script/traces.js"></script>
-    <script type="module" src="./test.js"></script>
 </body>
 
 </html>

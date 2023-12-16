@@ -1,6 +1,6 @@
 export const arrDataHour = []; // 
 export const arrDataAllValue = [];
-export const arrDataDay = [];
+export let arrDataDay = [];
 export const arrProductionForecast = [];
 
 // export const arrDataTime = Array.from(Array(24).keys());
