@@ -1,3 +1,7 @@
+.root {
+  margin: 0;
+  padding: 0;
+}
 .container {
   display: flex;
   justify-content: center;
@@ -9,6 +13,10 @@
   font-size: 23px;
   font-weight: 14;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.chart {
+  width: 100%;
 }
 
 .menu {
@@ -27,17 +35,21 @@
   margin: 0;
   padding: 0;
   display: flex;
-  justify-content: center;
   flex-direction: column;
 }
 
+.menu__input-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
 
 .menu__wrapper:first-of-type {
   margin-bottom: 30px;
 }
 .menu__title {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 16px;
   font-weight: 19;
@@ -48,21 +60,29 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 14px;
   font-weight: 14;
-  margin: 0 0 10px 30px;
+  margin: 0 0 10px;
 }
 
 .menu__input-group {
   display: flex;
-  gap: 8px;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   margin-bottom: 30px;
 }
+
+.menu__input-group_type_plan {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
 .menu__input {
   border: 1px solid #bdbdbd;
   font-weight: 400;
   line-height: 1.5;
   padding: 5px 8px;
+  min-height: 31px;
+  width: 100%;
 }
 
 .menu__input_disabled {
@@ -75,7 +95,8 @@
 
 .menu__button {
   display: inline-block;
-  width: 300px;
+  width:100%;
+  min-height: 43px;
   align-self: center;
   font-weight: 400;
   line-height: 1.5;
@@ -88,7 +109,6 @@
   user-select: none;
   background-color: #eee;
   border: 1px solid #bdbdbd;
-  padding: 5px 8px;
   font-size: 15px;
   border-radius: 7px;
   transition: background-color .15s ease-in-out;
@@ -96,18 +116,28 @@
 
 .menu__button:hover {
   background-color: #84B3E9;
+  background-color: rgba(228, 235, 70, 1);
 }
 
-/* .menu__input-group .menu__input {
+/* .menu__button_type_plan {
+  width: 100%;
+} */
+
+.menu__button_type_plan:hover {
+  background-color: rgba(55,128,191,0.4);
+}
+
+.menu__input-group_type_plan .menu__input {
+  /* gap: 0; */
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   position: relative;
   z-index: 2;
-} */
-/* 
-.menu__input-group .menu__button{
+}
+
+.menu__input-group_type_plan .menu__button{
   position: relative;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   border-left-width: 0;
-} */
+}

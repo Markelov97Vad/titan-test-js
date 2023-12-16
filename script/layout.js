@@ -26,11 +26,23 @@ export function renderLayout(date = '2018-06-15', plan = 0, arrValueForecast) { 
       }
     },
     showlegend: true,
+    // automargin: true,
+    margin: {
+      l: 130,
+      r: 100,
+      b: 100,
+      t: 200,
+      pad: 4
+   },
     // hovermode:'closest',
     legend: {
-      x: 0.3,
-      y: -0.10,
-      yref: 'paper',
+      x: 0.15,
+      y: -0.34,
+      // width: 100,
+      xanchor: 'left',
+      yanchor: 'left',
+
+      // yref: 'paper',
       orientation: 'h',
     },
   
@@ -39,8 +51,8 @@ export function renderLayout(date = '2018-06-15', plan = 0, arrValueForecast) { 
 
     // plot_bgcolor: '#7279D8)',
     // plot_bgcolor: "rgba(0,0,0,0)",
-    width: 1000,
-    height: 500,
+    // width: 1000,
+    // height: 500,
     // showlegend: false,
     autosize: true,
     annotations: [arrValueForecast.length < 2 ? '' :
@@ -168,7 +180,7 @@ export function renderLayout(date = '2018-06-15', plan = 0, arrValueForecast) { 
       ticktext: []
     },
     yaxis: {
-      ticksuffix: ' тыс. m',
+      ticksuffix: ' тыс. м',
       tickformat: ',.0f',
       showline: false,
       title: {

@@ -3,7 +3,7 @@ import { arrDataAllValue, arrDataHour, arrProductionForecast } from "./script/co
 import { getForecastValue, getFormattedDate, setDataForForecast, sortDataDay } from "./script/utils.js";
 import { renderLayout } from "./script/layout.js";
 import { renderDayTrace, renderHourTrace, renderProductionPlan, renderForecastTrace } from "./script/traces.js";
-const myDivContainer = document.querySelector('.myDiv');
+const chartContainer = document.querySelector('.chart');
 
 let allValue = 0;
 let planValue = 0;
@@ -15,44 +15,15 @@ let select = document.querySelector('#time');
 const formMenu = new Form('menu', handleFormSubmit, handleButtonPlan);
 formMenu.setEventListeners();
 
-// Array.from(Array(24)).forEach((el, i) => {
-//   if(i === 23){
-//     return arrDataTime.push(`23:59`)
-//   }
-//   arrDataTime.push(`${i < 9 ? 0 : ''}${i + 1}:00`)
-// })
 
-// function renderTimeForSelector(time) {
-//   arrDataTime = arrDataTime.filter(timeFromSelect => {
-//     return timeFromSelect !== time
-//   })
-//   select.innerHTML = ''
-//   arrDataTime.forEach((el,i) => {
-//     select.insertAdjacentHTML('afterbegin', `<option value="${el}">${el}</option>`)
-//   })
-// }
-// renderTimeForSelector();
-
-//! отрисовывает уже готовый макет
 function renderChart(dataDay) {
-  console.log(dataDay,"DATEEE");
-  console.log(planValue,"VALUEE");
-  // const dataTrace = [
-  //   renderDayTrace(dataDay),
-  //   renderHourTrace(),
-  //   renderForecastTrace(setDataForForecast(dataDay, currentDate), plan),
-  //   renderProductionPlan(currentDate, plan)
-  // ]
+
   const dataTrace = [
     renderDayTrace(sortDataDay(dataDay)),
     renderHourTrace(),
     renderForecastTrace(setDataForForecast(sortDataDay(dataDay), currentDate), planValue),
     renderProductionPlan(currentDate, planValue)
   ]
-
-  // if (dataDay.length >= 2) {
-  //   dataTrace.push(renderProductionTrace(dataProd))
-  // }
 
   const options = {
     scrollZoom: true,
@@ -63,9 +34,9 @@ function renderChart(dataDay) {
   }
   console.log('Все пути', dataTrace);
 
-  Plotly.newPlot('myDiv', dataTrace, renderLayout(currentDate, planValue, setDataForForecast(sortDataDay(dataDay), currentDate)), options);
+  Plotly.newPlot('chart', dataTrace, renderLayout(currentDate, planValue, setDataForForecast(sortDataDay(dataDay), currentDate)), options);
 
-  myDivContainer.on('plotly_click', function (data) {
+  chartContainer.on('plotly_click', function (data) {
     const point = data.points[0]
 
     const newAnnotation = {
@@ -90,7 +61,7 @@ function renderChart(dataDay) {
       }
     };
 
-    const divid = document.getElementById('myDiv');
+    const divid = document.getElementById('chart');
     const newIndex = (divid.layout.annotations || []).length;
 
     if (newIndex) {
@@ -98,15 +69,15 @@ function renderChart(dataDay) {
       divid.layout.annotations.forEach(function (ann, sameIndex) {
         console.log('Ann', ann);
         if (ann.text === newAnnotation.text) {
-          Plotly.relayout('myDiv', 'annotations[' + sameIndex + ']', 'remove');
+          Plotly.relayout('chart', 'annotations[' + sameIndex + ']', 'remove');
           foundCopy = true;
         }
       });
       if (foundCopy) return;
     }
-    Plotly.relayout('myDiv', 'annotations[' + newIndex + ']', newAnnotation);
+    Plotly.relayout('chart', 'annotations[' + newIndex + ']', newAnnotation);
   }).on('plotly_clickannotation', function (event, data) {
-    Plotly.relayout('myDiv', 'annotations[' + data.index + ']', 'remove');
+    Plotly.relayout('chart', 'annotations[' + data.index + ']', 'remove');
   });
 }
 
@@ -121,33 +92,11 @@ function handleFormSubmit(inputData) {
 
   arrDataAllValue.push(allValue)
   arrDataDay.push({ date: `${date} ${time}`, value: allValue + '' });
-
-  // 
-  arrDataHour.push({ date: `${date} ${time}`, value }) // {date: '2015-06-15 12:00', value: 113}
+  arrDataHour.push({ date: `${date} ${time}`, value })
   arrDataHour.sort((dateA, dateB) => {
     return new Date(dateA.date) - new Date(dateB.date)
   });
-  // if (arrProductionForecast.length === 0) {
-  //   arrProductionForecast.push({ date: `${date} 23:59`, value: plan })
-  // }
 
-  // arrDataDay.sort((dateA, dateB) => {
-  //   return new Date(dateA.date) - new Date(dateB.date)
-  // });
-  // arrDataDay = arrDataDay.map((dataDay, i) => {
-  //   let date = dataDay.date
-  //   return { date, value: arrDataAllValue[i] }
-  // })
-
-  // sortDataDay(arrDataDay);
-
-  // let arrForTheForecastTrace = []
-  // if (arrDataDay.length >= 2) {
-  //   console.log('ArrDataDayAAAAA', arrDataDay);
-  //   arrForTheForecastTrace.push(arrDataDay[arrDataDay.length - 1]);
-  //   arrForTheForecastTrace.push({ date: `${date} 23:59`, value: getForecastValue(arrDataDay) })
-  // }
-  // renderChart(arrDataDay, date, time, Number(plan))
   renderChart(arrDataDay)
 }
 

@@ -7,34 +7,49 @@
   <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
-<body>
-  <fieldset class="container">
+<body class="root">
+  <section class="container">
     <h1 class="title">График добычи за сутки</h1>
-    <div class="myDiv" id="myDiv"></div>
+    <div class="chart" id="chart"></div>
     <form class="menu">
       <legend class="menu__title">Модификация графика</legend>
       <fieldset class="menu__wrapper">
-        <label class="menu__label" for="point">Добавить точку</label>
-        <div class="menu__input-group">
-          <input placeholder="Дата" class="menu__input" type="date" name="date" id="date" required>
-          <input class="menu__input" type="time" name="time" id="time">
-          <!-- <select class="menu__input" name="time" id="time">
-          </select> -->
-          <input placeholder="Колличество" class="menu__input " type="number" name="value" id="value" required>
+        <div class="menu__input-container">
+
+          <div id="date">
+            <label class="menu__label" for="date">Дата:</label>
+            <div class="menu__input-group">
+              <input placeholder="Дата" class="menu__input" type="date" name="date" id="date" required>
+            </div>
+          </div>
+          <div>
+            <label class="menu__label" for="time">Время:</label>
+            <div class="menu__input-group">
+              <input class="menu__input" type="time" name="time" id="time">
+            </div>
+          </div>
+          <div>
+            <label class="menu__label" for="value">Колличество:</label>
+            <div class="menu__input-group">
+              <input placeholder="15 т. м" class="menu__input " type="number" name="value" id="value" required>
+            </div>
+          </div>
         </div>
+        <!-- <div class="menu__input-group">
+        </div> -->
         <button class="menu__button" type="submit">Добавить</button>
       </fieldset>
       
       <fieldset class="menu__wrapper">
-        <label class="menu__label" for="plan">Установить план добычи</label>
-        <div class="menu__input-group">
-          <input placeholder="План добычи" class="menu__input" type="number" name="plan" id="plan">
-          <button class="menu__button" type="button" id="button-plan">Рассчитать</button>
+        <label class="menu__label" for="plan">План добычи:</label>
+        <div class="menu__input-group menu__input-group_type_plan">
+          <input placeholder="100 т. м" class="menu__input" type="number" name="plan" id="plan">
+          <button class="menu__button menu__button_type_plan" type="button" id="button-plan">Рассчитать</button>
         </div>
       </fieldset>
-      <div class="test" id="test"></div>
 
     </form>
+  </section>
     <script defer type="module" src="./index.js"></script>
     <script type="module" src="./script/utils.js"></script>
     <script type="module" src="./script/layout.js"></script>
