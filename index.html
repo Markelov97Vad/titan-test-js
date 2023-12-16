@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -15,7 +16,6 @@
       <legend class="menu__title">Модификация графика</legend>
       <fieldset class="menu__wrapper">
         <div class="menu__input-container">
-
           <div id="date">
             <label class="menu__label" for="date">Дата:</label>
             <div class="menu__input-group">
@@ -25,7 +25,7 @@
           <div>
             <label class="menu__label" for="time">Время:</label>
             <div class="menu__input-group">
-              <input class="menu__input" type="time" name="time" id="time">
+              <input class="menu__input" type="time" name="time" id="time" required>
             </div>
           </div>
           <div>
@@ -35,11 +35,9 @@
             </div>
           </div>
         </div>
-        <!-- <div class="menu__input-group">
-        </div> -->
         <button class="menu__button" type="submit">Добавить</button>
       </fieldset>
-      
+
       <fieldset class="menu__wrapper">
         <label class="menu__label" for="plan">План добычи:</label>
         <div class="menu__input-group menu__input-group_type_plan">
@@ -50,12 +48,11 @@
 
     </form>
   </section>
-    <script defer type="module" src="./index.js"></script>
-    <script type="module" src="./script/utils.js"></script>
-    <script type="module" src="./script/layout.js"></script>
-    <script type="module" src="./script/constants.js"></script>
-    <script type="module" src="./script/Form.js"></script>
-    <script type="module" src="./script/traces.js"></script>
+  <script defer type="module" src="./index.js"></script>
+  <script type="module" src="./script/utils.js"></script>
+  <script type="module" src="./script/layout.js"></script>
+  <script type="module" src="./script/Form.js"></script>
+  <script type="module" src="./script/traces.js"></script>
 </body>
 
 </html>
