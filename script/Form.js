@@ -9,6 +9,7 @@ export default class Form {
 
   _getInputValue() {
     this._formValues = {};
+    console.log(this._inputList);
     this._inputList.forEach(input => {
       this._formValues[input.name] = input.value;
     })
@@ -21,9 +22,11 @@ export default class Form {
 
       this._handleFormSubmit(this._getInputValue());
 
-      if(this._getInputValue().date.length > 0){
+      if(this._getInputValue().time.length > 0){
+
         const inputData = this._form.querySelector('#date');
-        inputData.classList.add('menu__input_disabled')
+        inputData.setAttribute('disabled', '')
+
       }
     })
     

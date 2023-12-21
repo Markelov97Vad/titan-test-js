@@ -15,8 +15,16 @@
     <form class="menu">
       <legend class="menu__title">Модификация графика</legend>
       <fieldset class="menu__wrapper">
+        <label class="menu__label" for="plan">Интервал :</label>
+        <!-- <div class="menu__input-group menu__input-group_type_plan">
+          <input placeholder="100 т. м" class="menu__input" type="number" name="plan" id="plan">
+        </div> -->
+        <button class="menu__button"  type="button" id="button-active">Запуск</button>
+        <button class="menu__button"  type="button" id="button-stop">Стоп</button>
+      </fieldset>
+      <fieldset class="menu__wrapper">
         <div class="menu__input-container">
-          <div id="date">
+          <div>
             <label class="menu__label" for="date">Дата:</label>
             <div class="menu__input-group">
               <input placeholder="Дата" class="menu__input" type="date" name="date" id="date" required>

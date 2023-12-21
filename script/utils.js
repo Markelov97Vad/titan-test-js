@@ -1,4 +1,5 @@
 export function getForecastValue(arrValuesDay) {
+  // console.log(arrValuesDay);
   const firstData = arrValuesDay[arrValuesDay.length - 2]
   const secondData = arrValuesDay[arrValuesDay.length - 1]
   const firstDateDay = firstData.date;
